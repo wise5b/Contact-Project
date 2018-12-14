@@ -1,0 +1,113 @@
+<input type="button" value="Add" (click)="addContact()" />
+<div style="overflow:auto">
+    <table>
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>FirstName</td>
+                <td>LastName</td>
+                <td>Address</td>
+                <td>City</td>
+                <td>State</td>
+                <td>Zip</td>
+                <td>Country</td>
+                <td>HomePhone</td>
+                <td>MobilePhone</td>
+                <td>WorkPhone</td>
+                <td>Fax</td>
+                <td>Email</td>
+                <td>Website</td>
+                <td>Facebook</td>
+                <td>Twitter</td>
+                <td>Instagram</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+ 
+            <tr *ngFor="let contact of contact">
+                <ng-template [ngTemplateOutlet]="loadTemplate(contact)" [ngOutletContext]="{ $implicit: contact, idx: contact.Id }"></ng-template>
+            </tr>
+ 
+        </tbody>
+    </table>
+</div>
+<div>{{statusMessage}}</div>
+ 
+ 
+<!--for rows in read only mode-->
+<ng-template #readOnlyTemplate let-emp>
+    <td>{{contact.FirstName}}</td>
+    <td>{{contact.LastName}}</td>  
+    <td>{{contact.Address}}</td>
+    <td>{{contact.City}}</td>
+    <td>{{contact.State}}</td>
+    <td>{{contact.Zip}}</td>
+    <td>{{contact.Country}}</td>
+    <td>{{contact.HomePhone}}</td>
+    <td>{{contact.MobilePhone}}</td>
+    <td>{{contact.WorkPhone}}</td>
+    <td>{{contact.Fax}}</td>
+    <td>{{contact.Email}}</td>
+    <td>{{contact.Website}}</td>
+    <td>{{contact.Facebook}}</td>
+    <td>{{contact.Twitter}}</td>
+    <td>{{contact.Instagram}}</td>
+    <td>
+        <input type="button" value="Edit" (click)="editContact(contact)" />
+    </td>
+    <td>
+        <input type="button" value="Delete" (click)="deleteContact(contact.Id)" />
+    </td>
+</ng-template>
+
+<!--for rows in edit mode-->
+<ng-template #editTemplate>
+    <td>
+        <input type="text" [(ngModel)]="selContact.FirstName" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="selContact.LastName" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="selContact.Address" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="selContact.City" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="selContact.State" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="selContact.Zip" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="selContact.Country" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="selContact.HomePhone" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="selContact.MobilePhone" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="selContact.Email" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="selContact.Website" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="selContact.Facebook" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="selContact.Twitter" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="selContact.Instagram" />
+    </td>
+    <td>
+        <input type="button" value="Save" (click)="saveContact()" />
+    </td>
+ 
+</ng-template>
